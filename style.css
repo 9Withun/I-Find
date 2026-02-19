@@ -168,39 +168,62 @@ select:focus {
 
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
 }
 
 .result-card {
     border: 1px solid #ede9fe;
     border-radius: 14px;
-    padding: 16px;
+    padding: 12px;
     background: #fcfbff;
 }
 
-.result-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 8px;
+.result-card-compact {
+    background: #f8f7ff;
 }
 
-.tag {
-    background: #ede9fe;
-    color: #5b21b6;
+.hero-offer {
+    border: 2px solid #ef4444;
+    border-radius: 26px;
+    min-height: 205px;
+    background: #ffffff;
+    padding: 18px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #dc2626;
+    margin-bottom: 10px;
+}
+
+.hero-score {
+    background: #fee2e2;
+    color: #dc2626;
     border-radius: 999px;
     padding: 4px 10px;
-    font-size: 0.75rem;
     font-weight: 700;
+    font-size: 0.75rem;
+    margin-bottom: 12px;
 }
 
-.result-card p {
+.hero-offer h3 {
+    font-size: 1.08rem;
+    margin-bottom: 10px;
+}
+
+.hero-domain {
+    font-size: 0.95rem;
+    color: #ef4444;
+}
+
+.mini-hint {
     color: var(--text-grey);
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin-bottom: 14px;
+    font-size: 0.79rem;
+    line-height: 1.35;
+    margin-bottom: 8px;
 }
 
 .store-list {
@@ -244,6 +267,12 @@ select:focus {
 .lang-btn.active {
     color: var(--primary-color);
     font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+    .results-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 800px) {

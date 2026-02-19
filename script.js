@@ -190,6 +190,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return labels[budget] || labels.mid;
     }
 
+    function getDomain(url) {
+        return url.replace('https://', '').replace('http://', '').replace('www.', '');
+    }
+
     function hideSuggestions() {
         querySuggestions.style.display = 'none';
         querySuggestions.innerHTML = '';
@@ -255,27 +259,44 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderResults(lifestyle, budget, query) {
         const lang = localStorage.getItem('lang') || 'th';
         const picks = recommendationMap[lifestyle] || recommendationMap.everyday;
+        const budgetLabel = getBudgetLabel(budget);
+        const cards = [];
+
+        picks.forEach(item => {
+            item.stores.slice(0, 2).forEach((store, index) => {
+                cards.push({
+                    title: item.name[lang],
+                    score: item.score,
+                    reason: item.reason[lang],
+                    primaryStore: store,
+                    otherStores: item.stores.filter((_, storeIndex) => storeIndex !== index).slice(0, 2),
+                    query,
+                    budgetText: budgetLabel[lang]
+                });
+            });
+        });
+
         resultsGrid.innerHTML = '';
         emptyText.style.display = 'none';
 
-        picks.forEach(item => {
-            const budgetLabel = getBudgetLabel(budget);
+        cards.slice(0, 4).forEach(cardData => {
             const card = document.createElement('article');
-            card.className = 'result-card';
+            card.className = 'result-card result-card-compact';
 
-            const stores = item.stores.map(store => (
+            const extraStores = cardData.otherStores.map(store => (
                 `<a class="store-link" href="${store.url}" target="_blank" rel="noopener noreferrer">` +
                 `<span>${store.name}</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>`
             )).join('');
 
             card.innerHTML = `
-                <div class="result-head">
-                    <h3>${item.name[lang]}</h3>
-                    <span class="tag">${item.score}</span>
-                </div>
-                <p>${item.reason[lang]} ${lang === 'th' ? 'คำค้นของคุณ:' : 'Your query:'} <strong>${query}</strong></p>
-                <p class="hint">${budgetLabel[lang]}</p>
-                <div class="store-list">${stores}</div>
+                <a class="hero-offer" href="${cardData.primaryStore.url}" target="_blank" rel="noopener noreferrer">
+                    <span class="hero-score">${cardData.score}</span>
+                    <h3>${cardData.title}</h3>
+                    <p class="hero-domain">${getDomain(cardData.primaryStore.url)}</p>
+                </a>
+                <p class="mini-hint">${cardData.reason}</p>
+                <p class="mini-hint">${lang === 'th' ? 'คำค้น:' : 'Query:'} <strong>${cardData.query}</strong> • ${cardData.budgetText}</p>
+                <div class="store-list">${extraStores}</div>
             `;
 
             resultsGrid.appendChild(card);
