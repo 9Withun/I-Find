@@ -77,6 +77,39 @@ label {
     font-weight: 600;
 }
 
+.autocomplete-field {
+    position: relative;
+}
+
+.autocomplete-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #ddd6fe;
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(76, 29, 149, 0.12);
+    z-index: 30;
+    overflow: hidden;
+    display: none;
+}
+
+.suggestion-item {
+    width: 100%;
+    border: none;
+    background: #ffffff;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: #f5f3ff;
+}
+
 input,
 select {
     border: 1px solid #ddd6fe;

@@ -32,11 +32,12 @@
             <h2 data-th="บอกเราว่าคุณกำลังมองหาอะไร" data-en="Tell us what you need">บอกเราว่าคุณกำลังมองหาอะไร</h2>
             <form id="finderForm">
                 <div class="field-grid">
-                    <label>
+                    <label class="autocomplete-field">
                         <span data-th="สินค้า/หมวดหมู่" data-en="Product type">สินค้า/หมวดหมู่</span>
                         <input id="queryInput" type="text"
                             data-th-placeholder="เช่น โทรศัพท์, หูฟัง, รองเท้าเดินป่า"
-                            data-en-placeholder="e.g. smartphone, headphones, hiking shoes" required>
+                            data-en-placeholder="e.g. smartphone, headphones, hiking shoes" autocomplete="off" required>
+                        <div id="querySuggestions" class="autocomplete-list" role="listbox"></div>
                     </label>
 
                     <label>

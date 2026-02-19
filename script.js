@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultsGrid = document.getElementById('resultsGrid');
     const emptyText = document.getElementById('emptyText');
     const queryInput = document.getElementById('queryInput');
+    const querySuggestions = document.getElementById('querySuggestions');
 
     const recommendationMap = {
         everyday: [
@@ -149,6 +150,17 @@ document.addEventListener('DOMContentLoaded', function () {
         ]
     };
 
+    const searchSuggestions = {
+        th: [
+            'โทรศัพท์เล่นเกม', 'โทรศัพท์ถ่ายรูปสวย', 'หูฟังไร้สาย', 'หูฟังเกมมิ่ง', 'โน้ตบุ๊กทำงาน', 'โน้ตบุ๊กเกมมิ่ง',
+            'แท็บเล็ตจดงาน', 'กล้องมิเรอร์เลส', 'สมาร์ทวอทช์ออกกำลังกาย', 'รองเท้าเดินป่า', 'จอมอนิเตอร์ทำงาน', 'ไมค์สตรีมมิ่ง'
+        ],
+        en: [
+            'gaming phone', 'camera phone', 'wireless earbuds', 'gaming headset', 'work laptop', 'gaming laptop',
+            'tablet for note taking', 'mirrorless camera', 'fitness smartwatch', 'hiking shoes', 'office monitor', 'streaming microphone'
+        ]
+    };
+
     const translatableElements = document.querySelectorAll('[data-th][data-en]');
     const translatablePlaceholders = document.querySelectorAll('[data-th-placeholder][data-en-placeholder]');
 
@@ -165,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         langTH.classList.toggle('active', lang === 'th');
         langEN.classList.toggle('active', lang === 'en');
         localStorage.setItem('lang', lang);
+        showSuggestions(queryInput.value.trim());
     }
 
     function getBudgetLabel(budget) {
@@ -175,6 +188,42 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         return labels[budget] || labels.mid;
+    }
+
+    function hideSuggestions() {
+        querySuggestions.style.display = 'none';
+        querySuggestions.innerHTML = '';
+    }
+
+    function selectSuggestion(text) {
+        queryInput.value = text;
+        hideSuggestions();
+    }
+
+    function showSuggestions(keyword) {
+        const lang = localStorage.getItem('lang') || 'th';
+        const source = searchSuggestions[lang] || searchSuggestions.th;
+        const normalizedKeyword = keyword.toLowerCase();
+        const matches = source
+            .filter(item => item.toLowerCase().includes(normalizedKeyword))
+            .slice(0, 6);
+
+        if (!matches.length || !keyword) {
+            hideSuggestions();
+            return;
+        }
+
+        querySuggestions.innerHTML = '';
+        matches.forEach(item => {
+            const option = document.createElement('button');
+            option.type = 'button';
+            option.className = 'suggestion-item';
+            option.textContent = item;
+            option.addEventListener('click', () => selectSuggestion(item));
+            querySuggestions.appendChild(option);
+        });
+
+        querySuggestions.style.display = 'block';
     }
 
     function renderResults(lifestyle, budget, query) {
@@ -207,6 +256,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    queryInput.addEventListener('input', event => {
+        showSuggestions(event.target.value.trim());
+    });
+
+    queryInput.addEventListener('focus', () => {
+        showSuggestions(queryInput.value.trim());
+    });
+
+    document.addEventListener('click', event => {
+        if (!event.target.closest('.autocomplete-field')) {
+            hideSuggestions();
+        }
+    });
+
     finderForm.addEventListener('submit', event => {
         event.preventDefault();
         const lifestyle = document.getElementById('lifestyleSelect').value;
@@ -218,6 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        hideSuggestions();
         renderResults(lifestyle, budget, query);
     });
 
