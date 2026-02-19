@@ -88,26 +88,47 @@ label {
     width: 100%;
     background: #ffffff;
     border: 1px solid #ddd6fe;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 10px 24px rgba(76, 29, 149, 0.12);
     z-index: 30;
-    overflow: hidden;
     display: none;
+    padding: 12px;
+}
+
+.suggestion-title {
+    font-size: 0.78rem;
+    color: #6d28d9;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.suggestion-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .suggestion-item {
-    width: 100%;
-    border: none;
-    background: #ffffff;
-    text-align: left;
-    padding: 10px 12px;
-    font-size: 0.9rem;
+    border: 1px solid #ddd6fe;
+    background: #f9f7ff;
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 0.82rem;
     color: var(--text-dark);
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.suggestion-item i {
+    color: #8b5cf6;
+    font-size: 0.7rem;
 }
 
 .suggestion-item:hover {
-    background: #f5f3ff;
+    background: #ede9fe;
+    border-color: #c4b5fd;
 }
 
 input,

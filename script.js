@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         langTH.classList.toggle('active', lang === 'th');
         langEN.classList.toggle('active', lang === 'en');
         localStorage.setItem('lang', lang);
-        showSuggestions(queryInput.value.trim());
+        showSuggestions(queryInput.value.trim(), true);
     }
 
     function getBudgetLabel(budget) {
@@ -198,32 +198,58 @@ document.addEventListener('DOMContentLoaded', function () {
     function selectSuggestion(text) {
         queryInput.value = text;
         hideSuggestions();
+        queryInput.focus();
     }
 
-    function showSuggestions(keyword) {
+    function renderSuggestionPanel(items, isFiltering) {
+        const lang = localStorage.getItem('lang') || 'th';
+        const title = isFiltering
+            ? (lang === 'th' ? 'คำค้นที่ตรงกับที่พิมพ์' : 'Matching suggestions')
+            : (lang === 'th' ? 'คำค้นแนะนำยอดนิยม' : 'Popular suggestions');
+
+        const chipButtons = items.map(item => (
+            `<button type="button" class="suggestion-item" data-value="${item}">` +
+            `<i class="fa-solid fa-magnifying-glass"></i><span>${item}</span></button>`
+        )).join('');
+
+        querySuggestions.innerHTML = `
+            <p class="suggestion-title">${title}</p>
+            <div class="suggestion-chips">${chipButtons}</div>
+        `;
+
+        querySuggestions.querySelectorAll('.suggestion-item').forEach(button => {
+            button.addEventListener('click', () => selectSuggestion(button.dataset.value || ''));
+        });
+
+        querySuggestions.style.display = 'block';
+    }
+
+    function showSuggestions(keyword, forceShowPopular = false) {
         const lang = localStorage.getItem('lang') || 'th';
         const source = searchSuggestions[lang] || searchSuggestions.th;
-        const normalizedKeyword = keyword.toLowerCase();
+        const trimmedKeyword = keyword.trim();
+
+        if (!trimmedKeyword) {
+            if (!forceShowPopular) {
+                hideSuggestions();
+                return;
+            }
+
+            renderSuggestionPanel(source.slice(0, 8), false);
+            return;
+        }
+
+        const normalizedKeyword = trimmedKeyword.toLowerCase();
         const matches = source
             .filter(item => item.toLowerCase().includes(normalizedKeyword))
-            .slice(0, 6);
+            .slice(0, 8);
 
-        if (!matches.length || !keyword) {
+        if (!matches.length) {
             hideSuggestions();
             return;
         }
 
-        querySuggestions.innerHTML = '';
-        matches.forEach(item => {
-            const option = document.createElement('button');
-            option.type = 'button';
-            option.className = 'suggestion-item';
-            option.textContent = item;
-            option.addEventListener('click', () => selectSuggestion(item));
-            querySuggestions.appendChild(option);
-        });
-
-        querySuggestions.style.display = 'block';
+        renderSuggestionPanel(matches, true);
     }
 
     function renderResults(lifestyle, budget, query) {
@@ -257,11 +283,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     queryInput.addEventListener('input', event => {
-        showSuggestions(event.target.value.trim());
+        showSuggestions(event.target.value, true);
     });
 
     queryInput.addEventListener('focus', () => {
-        showSuggestions(queryInput.value.trim());
+        showSuggestions(queryInput.value, true);
     });
 
     document.addEventListener('click', event => {
@@ -278,6 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!query) {
             queryInput.focus();
+            showSuggestions('', true);
             return;
         }
 
