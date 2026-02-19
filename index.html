@@ -4,180 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Finder UI</title>
-
+    <title>I-Find | ตัวช่วยค้นหาสินค้าตามไลฟ์สไตล์</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <div class="lang-switcher">
         <button id="langTH" class="lang-btn active">TH</button>
         <span>|</span>
         <button id="langEN" class="lang-btn">EN</button>
     </div>
 
-
-    <div class="container">
+    <main class="container">
         <header>
-            <h1 data-th="ค้นหาสิ่งที่ใช่สำหรับคุณ" data-en="Find the Perfect Choice for You">Find the Perfect
-                Choice<br>for You</h1>
-            <p class="subtitle" data-th="เราช่วยคุณเลือกสินค้าและบริการที่เหมาะสมกับงบประมาณและความต้องการ"
-                data-en="We help you choose the right products or services based on your needs, budget, and priorities.">
-                We help you choose the right products or services based on your needs, budget, and priorities.
+            <h1 data-th="ค้นหาสินค้าที่ใช่ ตามการใช้งานของคุณ"
+                data-en="Find the right products for your lifestyle.">ค้นหาสินค้าที่ใช่ ตามการใช้งานของคุณ</h1>
+            <p class="subtitle"
+                data-th="I-Find จะช่วยแนะนำสินค้าที่เหมาะกับไลฟ์สไตล์ของคุณ พร้อมลิงก์ร้านค้าให้เลือกจากหลายแพลตฟอร์มในที่เดียว"
+                data-en="I-Find recommends products based on your lifestyle and gives you multiple store links so you can pick your favorite seller.">
+                I-Find จะช่วยแนะนำสินค้าที่เหมาะกับไลฟ์สไตล์ของคุณ พร้อมลิงก์ร้านค้าให้เลือกจากหลายแพลตฟอร์มในที่เดียว
             </p>
         </header>
 
+        <section class="finder-card">
+            <h2 data-th="บอกเราว่าคุณกำลังมองหาอะไร" data-en="Tell us what you need">บอกเราว่าคุณกำลังมองหาอะไร</h2>
+            <form id="finderForm">
+                <div class="field-grid">
+                    <label>
+                        <span data-th="สินค้า/หมวดหมู่" data-en="Product type">สินค้า/หมวดหมู่</span>
+                        <input id="queryInput" type="text"
+                            data-th-placeholder="เช่น โทรศัพท์, หูฟัง, รองเท้าเดินป่า"
+                            data-en-placeholder="e.g. smartphone, headphones, hiking shoes" required>
+                    </label>
 
-        <div class="search-container">
-            <input type="text" data-th-placeholder="คุณกำลังมองหาอะไรอยู่? เช่น โทรศัพท์เกมมิ่ง กล้อง"
-                data-en-placeholder="What are you looking for? e.g. Gaming phone, Camera...">
+                    <label>
+                        <span data-th="ไลฟ์สไตล์การใช้งาน" data-en="Lifestyle">ไลฟ์สไตล์การใช้งาน</span>
+                        <select id="lifestyleSelect" required>
+                            <option value="everyday" data-th="ใช้งานทั่วไป" data-en="Everyday use">ใช้งานทั่วไป</option>
+                            <option value="gaming" data-th="เกมมิ่ง/สตรีมมิ่ง" data-en="Gaming/Streaming">เกมมิ่ง/สตรีมมิ่ง</option>
+                            <option value="creative" data-th="ครีเอเตอร์/งานสร้างสรรค์" data-en="Creative Work">ครีเอเตอร์/งานสร้างสรรค์</option>
+                            <option value="outdoor" data-th="เดินทาง/เอาท์ดอร์" data-en="Travel/Outdoor">เดินทาง/เอาท์ดอร์</option>
+                            <option value="work" data-th="ทำงาน/ออฟฟิศ" data-en="Work/Productivity">ทำงาน/ออฟฟิศ</option>
+                        </select>
+                    </label>
 
-            <button class="search-btn" data-th="ค้นหา" data-en="Search">
-                Search
-            </button>
-
-        </div>
-
-        <section>
-            <h2 data-th="หมวดหมู่ยอดนิยม" data-en="Quick Category Shortcuts"></h2>
-            <div class="category-grid">
-                <div class="cat-card" data-id="smartphones">
-                    <div class="cat-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                    <div class="cat-title" data-th="สมาร์ตโฟน" data-en="Smartphones"></div>
+                    <label>
+                        <span data-th="งบประมาณ" data-en="Budget range">งบประมาณ</span>
+                        <select id="budgetSelect" required>
+                            <option value="entry" data-th="ประหยัด (ต่ำกว่า 5,000 บาท)" data-en="Entry (under 150 USD)">ประหยัด (ต่ำกว่า 5,000 บาท)</option>
+                            <option value="mid" data-th="คุ้มค่า (5,000 - 20,000 บาท)" data-en="Mid (150-600 USD)">คุ้มค่า (5,000 - 20,000 บาท)</option>
+                            <option value="premium" data-th="พรีเมียม (20,000+ บาท)" data-en="Premium (600+ USD)">พรีเมียม (20,000+ บาท)</option>
+                        </select>
+                    </label>
                 </div>
 
-                <div class="cat-card" data-id="gaming">
-                    <div class="cat-icon"><i class="fa-solid fa-gamepad"></i></div>
-                    <div class="cat-title" data-th="อุปกรณ์เกมมิ่ง" data-en="Gaming Devices"></div>
-                </div>
-
-                <div class="cat-card" data-id="laptops">
-                    <div class="cat-icon"><i class="fa-solid fa-laptop"></i></div>
-                    <div class="cat-title" data-th="แล็ปท็อป" data-en="Laptops"></div>
-                </div>
-
-                <div class="cat-card" data-id="entertainment">
-                    <div class="cat-icon"><i class="fa-solid fa-headphones"></i></div>
-                    <div class="cat-title" data-th="เครื่องเสียง" data-en="Entertainment"></div>
-                </div>
-
-                <div class="cat-card" data-id="smarthome">
-                    <div class="cat-icon"><i class="fa-solid fa-house-signal"></i></div>
-                    <div class="cat-title" data-th="อุปกรณ์สมาร์ทโฮม" data-en="Smart Home"></div>
-                </div>
-
-                <div class="cat-card" data-id="others">
-                    <div class="cat-icon"><i class="fa-solid fa-gift"></i></div>
-                    <div class="cat-title" data-th="อื่นๆ" data-en="Others"></div>
-                </div>
-            </div>
+                <button class="search-btn" type="submit" data-th="แสดงคำแนะนำ" data-en="Show recommendations">แสดงคำแนะนำ</button>
+            </form>
         </section>
 
-        <section>
-            <h2 data-th="วิธีการทำงาน" data-en="How It Works"></h2>
-            <div class="process-grid">
-                <div class="process-card">
-                    <div class="process-icon"><i class="fa-solid fa-dollar-sign"></i></div>
-                    <h3>Tell Us Your Needs</h3>
-                    <p>Select your budget and what you care about.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon"><i class="fa-solid fa-microchip"></i></div>
-                    <h3>AI Finds What Matches</h3>
-                    <p>We analyze features and compare options for you.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon"><i class="fa-solid fa-check"></i></div>
-                    <h3>Get Your Best Choice</h3>
-                    <p>See clear recommendations with reasons.</p>
-                </div>
-            </div>
+        <section class="results" id="resultsSection" aria-live="polite">
+            <h2 data-th="คำแนะนำสำหรับคุณ" data-en="Recommendations for you">คำแนะนำสำหรับคุณ</h2>
+            <p class="hint" id="emptyText" data-th="กรอกข้อมูลด้านบน แล้วเราจะช่วยคัดสินค้าที่เหมาะกับคุณ"
+                data-en="Fill in your needs above and we will recommend the best matching options.">
+                กรอกข้อมูลด้านบน แล้วเราจะช่วยคัดสินค้าที่เหมาะกับคุณ
+            </p>
+            <div id="resultsGrid" class="results-grid"></div>
         </section>
-
-        <section>
-            <h2 data-th="คำแนะนำที่เหมาะกับคุณ" data-en="Featured Recommendations"></h2>
-            <div class="featured-grid">
-                <div class="feat-card">
-                    <div class="feat-img-placeholder"><i class="fa-solid fa-mobile-screen"></i></div>
-                    <div class="feat-info">
-                        <h3>95%</h3>
-                        <span>Match for</span>
-                        <div class="product-name">Smartphone</div>
-                    </div>
-                </div>
-                <div class="feat-card">
-                    <div class="feat-img-placeholder"><i class="fa-solid fa-headset"></i></div>
-                    <div class="feat-info">
-                        <h3>92%</h3>
-                        <span>Match for</span>
-                        <div class="product-name">Gaming Headset</div>
-                    </div>
-                </div>
-                <div class="feat-card">
-                    <div class="feat-img-placeholder"><i class="fa-solid fa-laptop"></i></div>
-                    <div class="feat-info">
-                        <h3>87%</h3>
-                        <span>Match for</span>
-                        <div class="product-name">Laptop</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="cta-container">
-            <button class="cta-big-btn">See More Recommendations</button>
-        </div>
-        <footer class="site-footer">
-            <div class="footer-grid">
-
-                <!-- Brand -->
-                <div class="footer-col">
-                    <h3 class="footer-brand">I-Find for You</h3>
-                    <p data-th="แพลตฟอร์มแนะนำสินค้าอัจฉริยะที่เข้าใจความต้องการของคุณ"
-                        data-en="Smart product recommendations that match your needs">
-                        Smart product recommendations that match your needs
-                    </p>
-                </div>
-
-                <!-- Quick Links -->
-                <div class="footer-col">
-                    <h4 data-th="ลิงก์ด่วน" data-en="Quick Links">Quick Links</h4>
-                    <ul>
-                        <li><a href="#" data-th="หน้าแรก" data-en="Home">Home</a></li>
-                        <li><a href="#" data-th="หมวดหมู่" data-en="Categories">Categories</a></li>
-                        <li><a href="#" data-th="วิธีการทำงาน" data-en="How It Works">How It Works</a></li>
-                    </ul>
-                </div>
-
-                <!-- Legal -->
-                <div class="footer-col">
-                    <h4 data-th="ข้อมูลทางกฎหมาย" data-en="Legal">Legal</h4>
-                    <ul>
-                        <li><a href="#" data-th="นโยบายความเป็นส่วนตัว" data-en="Privacy Policy">Privacy Policy</a></li>
-                        <li><a href="#" data-th="ข้อกำหนดการใช้งาน" data-en="Terms of Service">Terms of Service</a></li>
-                        <li><a href="#" data-th="ข้อจำกัดความรับผิดชอบ" data-en="Disclaimer">Disclaimer</a></li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Contact -->
-            <div class="footer-contact">
-                <span data-th="ติดต่อเรา:" data-en="Contact:">Contact:</span>
-                <a href="mailto:support@ifindforyou.com">support@ifindforyou.com</a>
-            </div>
-
-            <!-- Copyright -->
-            <div class="footer-bottom">
-                © 2025 I-Find for You. All rights reserved.
-            </div>
-        </footer>
-
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
