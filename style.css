@@ -166,6 +166,16 @@ select:focus {
     margin-bottom: 12px;
 }
 
+.brand-block {
+    margin-bottom: 18px;
+}
+
+.brand-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #5b21b6;
+}
+
 .results-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -173,7 +183,7 @@ select:focus {
 }
 
 .result-card {
-    border: 1px solid #ede9fe;
+    border: 1px solid #e9ddff;
     border-radius: 14px;
     padding: 12px;
     background: #fcfbff;
@@ -184,7 +194,7 @@ select:focus {
 }
 
 .hero-offer {
-    border: 2px solid #ef4444;
+    border: 2px solid #c4b5fd;
     border-radius: 26px;
     min-height: 205px;
     background: #ffffff;
@@ -195,13 +205,13 @@ select:focus {
     align-items: center;
     text-align: center;
     text-decoration: none;
-    color: #dc2626;
+    color: #5b21b6;
     margin-bottom: 10px;
 }
 
 .hero-score {
-    background: #fee2e2;
-    color: #dc2626;
+    background: #ede9fe;
+    color: #5b21b6;
     border-radius: 999px;
     padding: 4px 10px;
     font-weight: 700;
@@ -209,14 +219,14 @@ select:focus {
     margin-bottom: 12px;
 }
 
-.hero-offer h3 {
-    font-size: 1.08rem;
+.hero-offer h4 {
+    font-size: 1.05rem;
     margin-bottom: 10px;
 }
 
 .hero-domain {
-    font-size: 0.95rem;
-    color: #ef4444;
+    font-size: 0.92rem;
+    color: #7c3aed;
 }
 
 .mini-hint {

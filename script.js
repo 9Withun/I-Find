@@ -10,10 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const recommendationMap = {
         everyday: [
             {
-                name: { th: 'สมาร์ตโฟนแบตอึด', en: 'Long-battery smartphone' },
+                brand: 'Samsung',
+                model: { th: 'Galaxy A55', en: 'Galaxy A55' },
                 reason: {
-                    th: 'เหมาะกับการใช้งานทั่วไปทั้งวัน เน้นความลื่นไหล กล้องดี และแบตเตอรี่ทน.',
-                    en: 'Best for all-day use with smooth performance, good camera, and strong battery.'
+                    th: 'ใช้งานทั่วไปลื่น กล้องดี และแบตเตอรี่ใช้งานได้นานตลอดวัน.',
+                    en: 'Smooth daily performance, reliable camera, and long battery life.'
                 },
                 score: '95%',
                 stores: [
@@ -23,53 +24,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             {
-                name: { th: 'หูฟังไร้สายตัดเสียง', en: 'Noise-cancelling earbuds' },
+                brand: 'Xiaomi',
+                model: { th: 'Redmi Note 13', en: 'Redmi Note 13' },
                 reason: {
-                    th: 'เหมาะกับการเดินทางและใช้งานประจำวัน ฟังเพลงหรือประชุมออนไลน์ได้ชัดเจน.',
-                    en: 'Great for commuting and daily use with clear music and online meetings.'
-                },
-                score: '91%',
-                stores: [
-                    { name: 'NocNoc', url: 'https://www.nocnoc.com' },
-                    { name: 'JD Central', url: 'https://www.jd.co.th' },
-                    { name: 'Power Buy', url: 'https://www.powerbuy.co.th' }
-                ]
-            }
-        ],
-        gaming: [
-            {
-                name: { th: 'โน้ตบุ๊กเกมมิ่ง 144Hz', en: '144Hz gaming laptop' },
-                reason: {
-                    th: 'เฟรมเรตสูง ระบายความร้อนดี เหมาะกับเกมแข่งขันและสตรีมมิ่ง.',
-                    en: 'High frame rate and strong cooling for competitive gaming and streaming.'
-                },
-                score: '96%',
-                stores: [
-                    { name: 'JIB', url: 'https://www.jib.co.th' },
-                    { name: 'Advice', url: 'https://www.advice.co.th' },
-                    { name: 'Mercular', url: 'https://www.mercular.com' }
-                ]
-            },
-            {
-                name: { th: 'เมาส์เกมมิ่งน้ำหนักเบา', en: 'Lightweight gaming mouse' },
-                reason: {
-                    th: 'ตอบสนองไว ควบคุมง่าย เหมาะกับเกม FPS และการเล่นยาวนาน.',
-                    en: 'Fast response and easy control, ideal for FPS and long sessions.'
+                    th: 'คุ้มค่าสเปกต่อราคา เหมาะกับการใช้งานแอปโซเชียลและความบันเทิง.',
+                    en: 'Strong value for money for social apps and daily entertainment.'
                 },
                 score: '93%',
                 stores: [
-                    { name: 'Shopee', url: 'https://shopee.co.th' },
-                    { name: 'Lazada', url: 'https://www.lazada.co.th' },
-                    { name: 'IT City', url: 'https://www.itcity.in.th' }
+                    { name: 'JD Central', url: 'https://www.jd.co.th' },
+                    { name: 'NocNoc', url: 'https://www.nocnoc.com' },
+                    { name: 'Power Buy', url: 'https://www.powerbuy.co.th' }
                 ]
-            }
-        ],
-        creative: [
+            },
             {
-                name: { th: 'แท็บเล็ตพร้อมปากกา', en: 'Tablet with stylus support' },
+                brand: 'Apple',
+                model: { th: 'iPhone 15', en: 'iPhone 15' },
                 reason: {
-                    th: 'เหมาะกับงานวาดภาพ ตัดต่อคอนเทนต์ และงานครีเอทีฟนอกสถานที่.',
-                    en: 'Perfect for drawing, content editing, and mobile creative workflows.'
+                    th: 'ประสบการณ์ใช้งานเสถียร ใช้งานง่าย และกล้องดีในทุกสถานการณ์.',
+                    en: 'Stable experience, easy to use, and consistently strong camera quality.'
                 },
                 score: '94%',
                 stores: [
@@ -77,27 +50,103 @@ document.addEventListener('DOMContentLoaded', function () {
                     { name: 'Studio7', url: 'https://www.studio7thailand.com' },
                     { name: 'Power Buy', url: 'https://www.powerbuy.co.th' }
                 ]
+            }
+        ],
+        gaming: [
+            {
+                brand: 'ASUS',
+                model: { th: 'ROG Strix G16', en: 'ROG Strix G16' },
+                reason: {
+                    th: 'เฟรมเรตสูง ระบบระบายความร้อนดี เหมาะกับเกมแข่งขัน.',
+                    en: 'High frame rates and strong cooling for competitive gaming.'
+                },
+                score: '96%',
+                stores: [
+                    { name: 'JIB', url: 'https://www.jib.co.th' },
+                    { name: 'Advice', url: 'https://www.advice.co.th' },
+                    { name: 'IT City', url: 'https://www.itcity.in.th' }
+                ]
             },
             {
-                name: { th: 'กล้องมิเรอร์เลส', en: 'Mirrorless camera' },
+                brand: 'Lenovo',
+                model: { th: 'Legion 5', en: 'Legion 5' },
                 reason: {
-                    th: 'ภาพคม โฟกัสไว เหมาะกับคอนเทนต์วิดีโอและถ่ายงานจริงจัง.',
-                    en: 'Sharp image and fast autofocus for creators and serious content production.'
+                    th: 'สมดุลเรื่องพลังประมวลผลและอุณหภูมิ เหมาะทั้งเล่นเกมและทำงาน.',
+                    en: 'Balanced performance and thermals for gaming and productivity.'
+                },
+                score: '94%',
+                stores: [
+                    { name: 'Lazada', url: 'https://www.lazada.co.th' },
+                    { name: 'Shopee', url: 'https://shopee.co.th' },
+                    { name: 'Mercular', url: 'https://www.mercular.com' }
+                ]
+            },
+            {
+                brand: 'Razer',
+                model: { th: 'DeathAdder V3', en: 'DeathAdder V3' },
+                reason: {
+                    th: 'เมาส์น้ำหนักเบาและตอบสนองไว เหมาะกับเกม FPS.',
+                    en: 'Lightweight and fast response, ideal for FPS titles.'
                 },
                 score: '92%',
                 stores: [
+                    { name: 'Advice', url: 'https://www.advice.co.th' },
+                    { name: 'Shopee', url: 'https://shopee.co.th' },
+                    { name: 'Lazada', url: 'https://www.lazada.co.th' }
+                ]
+            }
+        ],
+        creative: [
+            {
+                brand: 'Apple',
+                model: { th: 'iPad Air + Pencil', en: 'iPad Air + Pencil' },
+                reason: {
+                    th: 'เหมาะกับงานวาดภาพ สเก็ตช์ และตัดต่อคอนเทนต์แบบพกพา.',
+                    en: 'Great for drawing, sketching, and portable content editing.'
+                },
+                score: '95%',
+                stores: [
+                    { name: 'Apple Store', url: 'https://www.apple.com/th/store' },
+                    { name: 'Studio7', url: 'https://www.studio7thailand.com' },
+                    { name: 'Power Buy', url: 'https://www.powerbuy.co.th' }
+                ]
+            },
+            {
+                brand: 'Sony',
+                model: { th: 'Sony ZV-E10', en: 'Sony ZV-E10' },
+                reason: {
+                    th: 'กล้องคมชัด โฟกัสไว เหมาะกับวิดีโอคอนเทนต์และ Vlog.',
+                    en: 'Sharp footage and fast autofocus for video content and vlogs.'
+                },
+                score: '93%',
+                stores: [
                     { name: 'Big Camera', url: 'https://www.bigcamera.co.th' },
                     { name: 'EC Mall', url: 'https://www.ec-mall.com' },
+                    { name: 'Lazada', url: 'https://www.lazada.co.th' }
+                ]
+            },
+            {
+                brand: 'Canon',
+                model: { th: 'EOS R50', en: 'EOS R50' },
+                reason: {
+                    th: 'โทนสีสวย ใช้งานง่าย เหมาะกับครีเอเตอร์ที่เริ่มจริงจัง.',
+                    en: 'Natural color and easy controls, great for growing creators.'
+                },
+                score: '91%',
+                stores: [
+                    { name: 'Big Camera', url: 'https://www.bigcamera.co.th' },
+                    { name: 'Shopee', url: 'https://shopee.co.th' },
                     { name: 'Lazada', url: 'https://www.lazada.co.th' }
                 ]
             }
         ],
         outdoor: [
             {
-                name: { th: 'นาฬิกา GPS ออกกำลังกาย', en: 'GPS fitness smartwatch' },
+                brand: 'Garmin',
+                model: { th: 'Forerunner 165', en: 'Forerunner 165' },
                 reason: {
                     th: 'ติดตามสุขภาพและเส้นทางได้ละเอียด เหมาะกับกิจกรรมกลางแจ้ง.',
-                    en: 'Tracks health and routes accurately for active outdoor lifestyles.'
+                    en: 'Detailed health and route tracking for outdoor activities.'
                 },
                 score: '90%',
                 stores: [
@@ -107,10 +156,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             {
-                name: { th: 'รองเท้าเดินป่ากันน้ำ', en: 'Waterproof hiking shoes' },
+                brand: 'Decathlon',
+                model: { th: 'Trek 100 Waterproof', en: 'Trek 100 Waterproof' },
                 reason: {
-                    th: 'ยึดเกาะดี ลดการลื่น เหมาะกับเดินทางธรรมชาติและทริปยาว.',
-                    en: 'Strong grip and comfort for trails, trekking, and long trips.'
+                    th: 'รองเท้ากันน้ำและเกาะพื้นดี เหมาะกับเดินป่าและทริปยาว.',
+                    en: 'Waterproof and high-grip hiking shoes for long trekking trips.'
                 },
                 score: '89%',
                 stores: [
@@ -122,10 +172,11 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         work: [
             {
-                name: { th: 'โน้ตบุ๊กบางเบาแบตยาว', en: 'Lightweight productivity laptop' },
+                brand: 'Dell',
+                model: { th: 'XPS 13', en: 'XPS 13' },
                 reason: {
-                    th: 'เหมาะกับงานเอกสาร ประชุม และพกพาระหว่างวันได้สะดวก.',
-                    en: 'Excellent for office tasks, meetings, and all-day portability.'
+                    th: 'เครื่องบางเบา แบตอึด เหมาะกับการทำงานและประชุมทั้งวัน.',
+                    en: 'Lightweight design and long battery for full-day work and meetings.'
                 },
                 score: '94%',
                 stores: [
@@ -135,16 +186,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             {
-                name: { th: 'จอมอนิเตอร์ถนอมสายตา', en: 'Eye-care monitor' },
+                brand: 'LG',
+                model: { th: 'LG Ergo 27"', en: 'LG Ergo 27"' },
                 reason: {
-                    th: 'ลดแสงสีฟ้าและปรับสรีระง่าย เพิ่มความสบายเมื่อต้องทำงานนาน.',
-                    en: 'Reduces eye strain with ergonomic setup for long work sessions.'
+                    th: 'จอถนอมสายตาและปรับสรีระง่าย เหมาะกับงานหน้าจอนาน.',
+                    en: 'Eye-care display with ergonomic adjustments for long work sessions.'
                 },
-                score: '88%',
+                score: '90%',
                 stores: [
                     { name: 'JIB', url: 'https://www.jib.co.th' },
                     { name: 'IT City', url: 'https://www.itcity.in.th' },
-                    { name: 'Banana', url: 'https://www.bnn.in.th' }
+                    { name: 'BaNANA', url: 'https://www.bnn.in.th' }
+                ]
+            },
+            {
+                brand: 'Logitech',
+                model: { th: 'MX Keys S', en: 'MX Keys S' },
+                reason: {
+                    th: 'คีย์บอร์ดทำงานที่พิมพ์สบายและเชื่อมต่อหลายอุปกรณ์ได้.',
+                    en: 'Comfortable productivity keyboard with multi-device connectivity.'
+                },
+                score: '88%',
+                stores: [
+                    { name: 'Mercular', url: 'https://www.mercular.com' },
+                    { name: 'Shopee', url: 'https://shopee.co.th' },
+                    { name: 'Lazada', url: 'https://www.lazada.co.th' }
                 ]
             }
         ]
@@ -260,46 +326,56 @@ document.addEventListener('DOMContentLoaded', function () {
         const lang = localStorage.getItem('lang') || 'th';
         const picks = recommendationMap[lifestyle] || recommendationMap.everyday;
         const budgetLabel = getBudgetLabel(budget);
-        const cards = [];
+        const groupedByBrand = {};
 
         picks.forEach(item => {
-            item.stores.slice(0, 2).forEach((store, index) => {
-                cards.push({
-                    title: item.name[lang],
-                    score: item.score,
-                    reason: item.reason[lang],
-                    primaryStore: store,
-                    otherStores: item.stores.filter((_, storeIndex) => storeIndex !== index).slice(0, 2),
-                    query,
-                    budgetText: budgetLabel[lang]
-                });
-            });
+            if (!groupedByBrand[item.brand]) {
+                groupedByBrand[item.brand] = [];
+            }
+            groupedByBrand[item.brand].push(item);
         });
 
         resultsGrid.innerHTML = '';
         emptyText.style.display = 'none';
 
-        cards.slice(0, 4).forEach(cardData => {
-            const card = document.createElement('article');
-            card.className = 'result-card result-card-compact';
+        Object.entries(groupedByBrand).forEach(([brand, items]) => {
+            const brandBlock = document.createElement('section');
+            brandBlock.className = 'brand-block';
 
-            const extraStores = cardData.otherStores.map(store => (
-                `<a class="store-link" href="${store.url}" target="_blank" rel="noopener noreferrer">` +
-                `<span>${store.name}</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>`
-            )).join('');
+            const heading = document.createElement('h3');
+            heading.className = 'brand-title';
+            heading.textContent = `${lang === 'th' ? 'ยี่ห้อ' : 'Brand'}: ${brand}`;
 
-            card.innerHTML = `
-                <a class="hero-offer" href="${cardData.primaryStore.url}" target="_blank" rel="noopener noreferrer">
-                    <span class="hero-score">${cardData.score}</span>
-                    <h3>${cardData.title}</h3>
-                    <p class="hero-domain">${getDomain(cardData.primaryStore.url)}</p>
-                </a>
-                <p class="mini-hint">${cardData.reason}</p>
-                <p class="mini-hint">${lang === 'th' ? 'คำค้น:' : 'Query:'} <strong>${cardData.query}</strong> • ${cardData.budgetText}</p>
-                <div class="store-list">${extraStores}</div>
-            `;
+            const brandCards = document.createElement('div');
+            brandCards.className = 'results-grid';
 
-            resultsGrid.appendChild(card);
+            items.forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'result-card result-card-compact';
+
+                const primaryStore = item.stores[0];
+                const extraStores = item.stores.slice(1).map(store => (
+                    `<a class="store-link" href="${store.url}" target="_blank" rel="noopener noreferrer">` +
+                    `<span>${store.name}</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>`
+                )).join('');
+
+                card.innerHTML = `
+                    <a class="hero-offer" href="${primaryStore.url}" target="_blank" rel="noopener noreferrer">
+                        <span class="hero-score">${item.score}</span>
+                        <h4>${item.model[lang]}</h4>
+                        <p class="hero-domain">${getDomain(primaryStore.url)}</p>
+                    </a>
+                    <p class="mini-hint">${item.reason[lang]}</p>
+                    <p class="mini-hint">${lang === 'th' ? 'คำค้น:' : 'Query:'} <strong>${query}</strong> • ${budgetLabel[lang]}</p>
+                    <div class="store-list">${extraStores}</div>
+                `;
+
+                brandCards.appendChild(card);
+            });
+
+            brandBlock.appendChild(heading);
+            brandBlock.appendChild(brandCards);
+            resultsGrid.appendChild(brandBlock);
         });
     }
 
