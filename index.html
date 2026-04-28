@@ -4,135 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Finder UI</title>
+    <title>I-Find | ตัวช่วยจับคู่มือถือที่เหมาะกับคุณ</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <div class="lang-switcher">
         <button id="langTH" class="lang-btn active">TH</button>
         <span>|</span>
         <button id="langEN" class="lang-btn">EN</button>
     </div>
 
-
-    <div class="container">
+    <main class="container">
         <header>
-            <h1 data-th="ค้นหาสิ่งที่ใช่สำหรับคุณ" data-en="Find the Perfect Choice for You">Find the Perfect
-                Choice<br>for You</h1>
-            <p class="subtitle" data-th="เราช่วยคุณเลือกสินค้าและบริการที่เหมาะสมกับงบประมาณและความต้องการ"
-                data-en="We help you choose the right products or services based on your needs, budget, and priorities.">
-                We help you choose the right products or services based on your needs, budget, and priorities.
+            <p class="brand">I-Find</p>
+            <h1 data-th="ค้นหา " data-en="Find your"></h1>
+            <h1 class="gradient" data-th="มือถือที่ใช่" data-en="perfect phone"></h1>
+            <p class="subtitle"
+                data-th="บอกสิ่งที่คุณต้องการ เช่น ดูหนัง อ่านข่าว เล่นเกม แล้วระบบจะจัดอันดับมือถือที่เหมาะที่สุด 1, 2, 3 พร้อมลิงก์ไปยังร้านค้า"
+                data-en="Tell us your priorities—entertainment, news, gaming—and we rank the best 3 phones with direct links to trusted stores.">
             </p>
         </header>
 
+        <section class="finder-card">
+            <h2 data-th="ตั้งค่าความต้องการ" data-en="Set your preferences"></h2>
+            <div class="form-grid">
+                <label class="field">
+                    <span data-th="งบประมาณสูงสุด (บาท)" data-en="Maximum budget (THB)"></span>
+                    <input id="budget" type="number" min="3000" step="500" value="18000">
+                </label>
 
-        <div class="search-container">
-            <input type="text" data-th-placeholder="คุณกำลังมองหาอะไรอยู่? เช่น โทรศัพท์เกมมิ่ง กล้อง"
-                data-en-placeholder="What are you looking for? e.g. Gaming phone, Camera...">
+                <label class="field">
+                    <span data-th="ขนาดหน้าจอที่ต้องการ" data-en="Preferred screen size"></span>
+                    <select id="screenPreference">
+                        <option value="any" data-th="ได้ทุกขนาด" data-en="Any size"></option>
+                        <option value="small" data-th="กะทัดรัด (ต่ำกว่า 6.4 นิ้ว)" data-en="Compact (under 6.4 inches)"></option>
+                        <option value="large" data-th="จอใหญ่ (6.4 นิ้วขึ้นไป)" data-en="Large (6.4 inches and above)"></option>
+                    </select>
+                </label>
+            </div>
 
-            <button class="search-btn" data-th="ค้นหา" data-en="Search">
-                Search
-            </button>
-
-        </div>
-
-        <section>
-            <h2 data-th="หมวดหมู่ยอดนิยม" data-en="Quick Category Shortcuts"></h2>
-            <div class="category-grid">
-                <div class="cat-card" data-id="smartphones">
-                    <div class="cat-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                    <div class="cat-title" data-th="สมาร์ตโฟน" data-en="Smartphones"></div>
+            <div class="sliders">
+                <div class="slider-row">
+                    <label for="entertainment" data-th="เน้นดูหนัง/ความบันเทิง" data-en="Entertainment priority"></label>
+                    <input id="entertainment" type="range" min="1" max="5" value="4">
+                    <span id="entValue">4</span>
                 </div>
-
-                <div class="cat-card" data-id="gaming">
-                    <div class="cat-icon"><i class="fa-solid fa-gamepad"></i></div>
-                    <div class="cat-title" data-th="อุปกรณ์เกมมิ่ง" data-en="Gaming Devices"></div>
+                <div class="slider-row">
+                    <label for="news" data-th="เน้นอ่านข่าว/ใช้งานทั่วไป" data-en="News & daily usage priority"></label>
+                    <input id="news" type="range" min="1" max="5" value="3">
+                    <span id="newsValue">3</span>
                 </div>
-
-                <div class="cat-card" data-id="laptops">
-                    <div class="cat-icon"><i class="fa-solid fa-laptop"></i></div>
-                    <div class="cat-title" data-th="แล็ปท็อป" data-en="Laptops"></div>
-                </div>
-
-                <div class="cat-card" data-id="entertainment">
-                    <div class="cat-icon"><i class="fa-solid fa-headphones"></i></div>
-                    <div class="cat-title" data-th="เครื่องเสียง" data-en="Entertainment"></div>
-                </div>
-
-                <div class="cat-card" data-id="smarthome">
-                    <div class="cat-icon"><i class="fa-solid fa-house-signal"></i></div>
-                    <div class="cat-title" data-th="อุปกรณ์สมาร์ทโฮม" data-en="Smart Home"></div>
-                </div>
-
-                <div class="cat-card" data-id="others">
-                    <div class="cat-icon"><i class="fa-solid fa-gift"></i></div>
-                    <div class="cat-title" data-th="อื่นๆ" data-en="Others"></div>
+                <div class="slider-row">
+                    <label for="gaming" data-th="เน้นเล่นเกม" data-en="Gaming priority"></label>
+                    <input id="gaming" type="range" min="1" max="5" value="5">
+                    <span id="gameValue">5</span>
                 </div>
             </div>
+
+            <button id="matchBtn" class="cta-btn" data-th="จับคู่มือถือที่เหมาะสม" data-en="Match the best phones"></button>
         </section>
 
-        <section>
-            <h2 data-th="วิธีการทำงาน" data-en="How It Works"></h2>
-            <div class="process-grid">
-                <div class="process-card">
-                    <div class="process-icon"><i class="fa-solid fa-dollar-sign"></i></div>
-                    <h3>Tell Us Your Needs</h3>
-                    <p>Select your budget and what you care about.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon"><i class="fa-solid fa-microchip"></i></div>
-                    <h3>AI Finds What Matches</h3>
-                    <p>We analyze features and compare options for you.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-icon"><i class="fa-solid fa-check"></i></div>
-                    <h3>Get Your Best Choice</h3>
-                    <p>See clear recommendations with reasons.</p>
-                </div>
+        <section class="results-section">
+            <div class="results-head">
+                <h2 data-th="ผลลัพธ์แนะนำ Top 3" data-en="Top 3 recommendations"></h2>
+                <p data-th="*I-Find ไม่ได้จำหน่ายสินค้าโดยตรง เราช่วยค้นหาและพาคุณไปยังร้านค้า"
+                    data-en="*I-Find is not a seller. We only discover and redirect you to stores."></p>
             </div>
+
+            <div id="results" class="results-grid"></div>
         </section>
-
-        <section>
-            <h2 data-th="คำแนะนำที่เหมาะกับคุณ" data-en="Featured Recommendations"></h2>
-            <div class="featured-grid">
-                <div class="feat-card">
-                    <div class="feat-img-placeholder"><i class="fa-solid fa-mobile-screen"></i></div>
-                    <div class="feat-info">
-                        <h3>95%</h3>
-                        <span>Match for</span>
-                        <div class="product-name">Smartphone</div>
-                    </div>
-                </div>
-                <div class="feat-card">
-                    <div class="feat-img-placeholder"><i class="fa-solid fa-headset"></i></div>
-                    <div class="feat-info">
-                        <h3>92%</h3>
-                        <span>Match for</span>
-                        <div class="product-name">Gaming Headset</div>
-                    </div>
-                </div>
-                <div class="feat-card">
-                    <div class="feat-img-placeholder"><i class="fa-solid fa-laptop"></i></div>
-                    <div class="feat-info">
-                        <h3>87%</h3>
-                        <span>Match for</span>
-                        <div class="product-name">Laptop</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="cta-container">
-            <button class="cta-big-btn">See More Recommendations</button>
-        </div>
-
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
